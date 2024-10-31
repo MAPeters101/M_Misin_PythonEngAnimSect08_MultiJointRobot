@@ -31,7 +31,10 @@ y2=y1+dy1
 frame_amount=len(t)
 def update_plot(num):
     joint_1.set_data([0,x1[num]],[0,y1[num]])
-    return joint_1,
+    joint_2.set_data([x1[num],x2[num]],[y1[num],y2[num]])
+    trajectory.set_data(x2[0:num],y2[0:num])
+
+    return joint_1,joint_2,trajectory
 
 # Define figure properties
 fig=plt.figure(figsize=(16,9),dpi=80,facecolor=(0.8,0.8,0.8))
