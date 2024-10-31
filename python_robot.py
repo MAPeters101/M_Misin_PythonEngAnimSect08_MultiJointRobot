@@ -4,27 +4,52 @@ import matplotlib.gridspec as gridspec
 import matplotlib.animation as animation
 import numpy as np
 
+type=2
+
 # Time array
 t0=0
 t_end=1
 dt=0.005
 t=np.arange(t0,t_end+dt,dt)
 
-# Joint 1
-r1=3+t
-f1=1
-alpha1=2*np.pi*f1*t
-x1=(r1)*np.cos(alpha1)
-y1=(r1)*np.sin(alpha1)
-
-# Joint 2
-r2=2
-f2=1
-alpha2=2*np.pi*f2*t # With respect to the 1st joint
-dx1=(r2)*np.cos(alpha2+alpha1)
-dy1=(r2)*np.sin(alpha2+alpha1)
-x2=x1+dx1
-y2=y1+dy1
+if type==1:
+    # Joint 1
+    r1=3+t
+    f1=1
+    alpha1=2*np.pi*f1*t
+    x1=(r1)*np.cos(alpha1)
+    y1=(r1)*np.sin(alpha1)
+    # Joint 2
+    r2=2
+    f2=1
+    alpha2=2*np.pi*f2*t # With respect to the 1st joint
+    dx1=(r2)*np.cos(alpha2+alpha1)
+    dy1=(r2)*np.sin(alpha2+alpha1)
+    x2=x1+dx1
+    y2=y1+dy1
+elif type==2:
+    # Joint 1
+    r1=4+0*t
+    f1=1
+    alpha1=2*np.pi*f1*t
+    x1=(r1)*np.cos(alpha1)
+    y1=(r1)*np.sin(alpha1)
+    # Joint 2
+    r2=3
+    f2=1
+    alpha2=2*np.pi*f2*t # With respect to the 1st joint
+    dx1=(r2)*np.cos(alpha2+alpha1)
+    dy1=(r2)*np.sin(alpha2+alpha1)
+    x2=x1+dx1
+    y2=y1+dy1
+    # Joint 3
+    r3=2
+    f3=1
+    alpha3=2*np.pi*f3*t
+    dx2=(r3)*np.cos(alpha3+alpha2+alpha1)
+    dy2=(r3)*np.sin(alpha3+alpha2+alpha1)
+    x3=x2+dx2
+    y3=y2+dy2
 
 ############################## ANIMATION ##############################
 
@@ -32,13 +57,21 @@ frame_amount=len(t)
 def update_plot(num):
     joint_1.set_data([0,x1[num]],[0,y1[num]])
     joint_2.set_data([x1[num],x2[num]],[y1[num],y2[num]])
-    trajectory.set_data(x2[0:num],y2[0:num])
+    if type>1:
+        joint_3.set_data([x2[num],x3[num]],[y2[num],y3[num]])
+    if type==1:
+        trajectory.set_data(x2[0:num],y2[0:num])
+    elif type==2:
+        trajectory.set_data(x3[0:num],y3[0:num])
 
     length_j1_funct.set_data(t[0:num],r1[0:num])
     alpha1_funct.set_data(t[0:num],alpha1[0:num])
     alpha2_funct.set_data(t[0:num],alpha2[0:num])
 
-    return joint_1,joint_2,trajectory,length_j1_funct,alpha1_funct,alpha2_funct
+    if type==1:
+        return joint_1,joint_2,trajectory,length_j1_funct,alpha1_funct,alpha2_funct
+    elif type==2:
+        return joint_1,joint_2,joint_3,trajectory,length_j1_funct,alpha1_funct,alpha2_funct
 
 # Define figure properties
 fig=plt.figure(figsize=(16,9),dpi=80,facecolor=(0.8,0.8,0.8))
@@ -50,6 +83,7 @@ ax1=fig.add_subplot(gs[:,0:2],facecolor=(0.9,0.9,0.9))
 base_line,=ax1.plot([0,0],[0,0.4],'k',linewidth=20,alpha=0.6)
 joint_1,=ax1.plot([],[],'k',linewidth=4)
 joint_2,=ax1.plot([],[],'b',linewidth=4)
+joint_3,=ax1.plot([],[],'g',linewidth=4)
 trajectory,=ax1.plot([],[],'r',linewidth=2)
 ax1.spines['left'].set_position('center')
 ax1.spines['bottom'].set_position('center')
