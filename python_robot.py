@@ -44,7 +44,8 @@ base_line,=ax1.plot([0,0],[0,0.4],'k',linewidth=20)
 joint_1,=ax1.plot([],[],'k',linewidth=4)
 joint_2,=ax1.plot([],[],'b',linewidth=4)
 trajectory,=ax1.plot([],[],'r',linewidth=2)
-
+ax1.spines['left'].set_position('center')
+ax1.spines['bottom'].set_position('center')
 
 
 
