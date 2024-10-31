@@ -4,7 +4,7 @@ import matplotlib.gridspec as gridspec
 import matplotlib.animation as animation
 import numpy as np
 
-type=2
+type=3
 
 # Time array
 t0=0
@@ -27,7 +27,7 @@ if type==1:
     dy1=(r2)*np.sin(alpha2+alpha1)
     x2=x1+dx1
     y2=y1+dy1
-elif type==2:
+else:
     # Joint 1
     r1=4+0*t
     f1=1
@@ -63,6 +63,10 @@ def update_plot(num):
         trajectory.set_data(x2[0:num],y2[0:num])
     elif type==2:
         trajectory.set_data(x3[0:num],y3[0:num])
+    elif type==3:
+        trajectory.set_data(x3[0:num],y3[0:num])
+        trajectory2.set_data(x2[0:num],y2[0:num])
+        trajectory3.set_data(x1[0:num],y1[0:num])
 
     length_j1_funct.set_data(t[0:num],r1[0:num])
     alpha1_funct.set_data(t[0:num],alpha1[0:num])
@@ -72,6 +76,9 @@ def update_plot(num):
         return joint_1,joint_2,trajectory,length_j1_funct,alpha1_funct,alpha2_funct
     elif type==2:
         return joint_1,joint_2,joint_3,trajectory,length_j1_funct,alpha1_funct,alpha2_funct
+    elif type==3:
+        return joint_1,joint_2,joint_3,length_j1_funct,alpha1_funct,alpha2_funct, \
+            trajectory,trajectory2,trajectory3,
 
 # Define figure properties
 fig=plt.figure(figsize=(16,9),dpi=80,facecolor=(0.8,0.8,0.8))
@@ -84,7 +91,12 @@ base_line,=ax1.plot([0,0],[0,0.4],'k',linewidth=20,alpha=0.6)
 joint_1,=ax1.plot([],[],'k',linewidth=4)
 joint_2,=ax1.plot([],[],'b',linewidth=4)
 joint_3,=ax1.plot([],[],'g',linewidth=4)
-trajectory,=ax1.plot([],[],'r',linewidth=2)
+if type <3:
+    trajectory,=ax1.plot([],[],'r',linewidth=2)
+else:
+    trajectory,=ax1.plot([],[],'g',linewidth=2)
+    trajectory2,=ax1.plot([],[],'b',linewidth=2)
+    trajectory3,=ax1.plot([],[],'k',linewidth=2)
 ax1.spines['left'].set_position('center')
 ax1.spines['bottom'].set_position('center')
 ax1.xaxis.set_label_coords(0.5,-0.02)
