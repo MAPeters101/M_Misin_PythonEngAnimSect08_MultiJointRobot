@@ -77,6 +77,17 @@ plt.xlabel('time [s]',fontsize=12)
 plt.ylabel('angle [rad]',fontsize=12)
 plt.grid(True)
 
+# Subplot 4
+ax4=fig.add_subplot(gs[2,2],facecolor=(0.9,0.9,0.9))
+alpha2_funct,=ax4.plot([],[],'b',linewidth=2)
+ax4.xaxis.set_label_coords(0.5,-0.1)
+plt.xlim(t0,t_end)
+plt.ylim(0,6*np.pi)
+plt.yticks(np.arange(0,6*np.pi+0.1,np.pi),['0','π','2π','3π','4π','5π','6π'])
+plt.xlabel('time [s]',fontsize=12)
+plt.ylabel('angle [rad]',fontsize=12)
+plt.grid(True)
+
 
 
 plt.show()
