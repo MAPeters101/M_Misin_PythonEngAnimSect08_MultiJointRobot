@@ -59,10 +59,22 @@ plt.grid(True)
 # Subplot 2
 ax2=fig.add_subplot(gs[0,2],facecolor=(0.9,0.9,0.9))
 length_j1_funct,=ax2.plot([],[],'b',linewidth=2)
+ax2.xaxis.set_label_coords(0.5,-0.1)
 plt.xlim(t0,t_end)
 plt.ylim(0,r1[-1]+1)
-plt.xlabel('time [s]', fontsize=12)
-plt.ylabel('meters [m]', fontsize=12)
+plt.xlabel('time [s]',fontsize=12)
+plt.ylabel('meters [m]',fontsize=12)
+plt.grid(True)
+
+# Subplot 3
+ax3=fig.add_subplot(gs[1,2],facecolor=(0.9,0.9,0.9))
+alpha1_funct,=ax3.plot([],[],'b',linewidth=2)
+ax3.xaxis.set_label_coords(0.5,-0.1)
+plt.xlim(t0,t_end)
+plt.ylim(0,6*np.pi)
+plt.yticks(np.arange(0,6*np.pi+0.1,np.pi),['0','π','2π','3π','4π','5π','6π'])
+plt.xlabel('time [s]',fontsize=12)
+plt.ylabel('angle [rad]',fontsize=12)
 plt.grid(True)
 
 
