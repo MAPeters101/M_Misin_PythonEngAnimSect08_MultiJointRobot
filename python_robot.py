@@ -30,8 +30,8 @@ y2=y1+dy1
 
 frame_amount=len(t)
 def update_plot(num):
-
-    return
+    joint_1.set_data([0,x1[num]],[0,y1[num]])
+    return joint_1,
 
 # Define figure properties
 fig=plt.figure(figsize=(16,9),dpi=80,facecolor=(0.8,0.8,0.8))
@@ -89,5 +89,6 @@ plt.ylabel('angle [rad]',fontsize=12)
 plt.grid(True)
 
 
-
+ani=animation.FuncAnimation(fig,update_plot,
+    frames=frame_amount,interval=20,repeat=True,blit=True)
 plt.show()
