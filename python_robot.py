@@ -35,8 +35,9 @@ def update_plot(num):
     trajectory.set_data(x2[0:num],y2[0:num])
 
     length_j1_funct.set_data(t[0:num],r1[0:num])
+    alpha1_funct.set_data(t[0:num],alpha1[0:num])
 
-    return joint_1,joint_2,trajectory,length_j1_funct
+    return joint_1,joint_2,trajectory,length_j1_funct,alpha1_funct
 
 # Define figure properties
 fig=plt.figure(figsize=(16,9),dpi=80,facecolor=(0.8,0.8,0.8))
