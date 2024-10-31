@@ -28,7 +28,28 @@ y2=y1+dy1
 
 ############################## ANIMATION ##############################
 
+frame_amount=len(t)
+def update_plot(num):
+
+    return
+
+# Define figure properties
+fig=plt.figure(figsize=(16,9),dpi=80,facecolor=(0.8,0.8,0.8))
+gs=gridspec.GridSpec(3,3)
+
+
+# Subplot 1
+ax1=fig.add_subplot(gs[:,0:2],facecolor=(0.9,0.9,0.9))
+base_line,=ax1.plot([0,0],[0,0.4],'k',linewidth=20)
+joint_1,=ax1.plot([],[],'k',linewidth=4)
+joint_2,=ax1.plot([],[],'b',linewidth=4)
+trajectory,=ax1.plot([],[],'r',linewidth=2)
 
 
 
 
+
+
+
+
+plt.show()
