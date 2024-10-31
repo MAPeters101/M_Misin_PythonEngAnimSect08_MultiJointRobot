@@ -40,17 +40,21 @@ gs=gridspec.GridSpec(3,3)
 
 # Subplot 1
 ax1=fig.add_subplot(gs[:,0:2],facecolor=(0.9,0.9,0.9))
-base_line,=ax1.plot([0,0],[0,0.4],'k',linewidth=20,alpha=0.7)
+base_line,=ax1.plot([0,0],[0,0.4],'k',linewidth=20,alpha=0.6)
 joint_1,=ax1.plot([],[],'k',linewidth=4)
 joint_2,=ax1.plot([],[],'b',linewidth=4)
 trajectory,=ax1.plot([],[],'r',linewidth=2)
 ax1.spines['left'].set_position('center')
 ax1.spines['bottom'].set_position('center')
+ax1.xaxis.set_label_coords(0.5,-0.02)
+ax1.yaxis.set_label_coords(-0.02,0.5)
 plt.xlim(-10,10)
 plt.ylim(-10,10)
 plt.xticks(np.arange(-10,10+1,1))
 plt.yticks(np.arange(-10,10+1,1))
-
+plt.xlabel('meters [m]',fontsize=12)
+plt.ylabel('meters [m]',fontsize=12)
+plt.grid(True)
 
 
 
