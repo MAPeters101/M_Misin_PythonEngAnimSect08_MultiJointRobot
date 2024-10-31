@@ -56,6 +56,14 @@ plt.xlabel('meters [m]',fontsize=12)
 plt.ylabel('meters [m]',fontsize=12)
 plt.grid(True)
 
+# Subplot 2
+ax2=fig.add_subplot(gs[0,2],facecolor=(0.9,0.9,0.9))
+length_j1_funct,=ax2.plot([],[],'b',linewidth=2)
+plt.xlim(t0,t_end)
+plt.ylim(0,r1[-1]+1)
+plt.xlabel('time [s]', fontsize=12)
+plt.ylabel('meters [m]', fontsize=12)
+plt.grid(True)
 
 
 
